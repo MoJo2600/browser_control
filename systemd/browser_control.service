@@ -1,0 +1,17 @@
+[Unit]
+Description=BrowserControl
+
+[Service]
+# We need this to make sure that chromium is opened in the right X server session
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
+WorkingDirectory=/home/pi/browser_control/
+ExecStart=/usr/bin/node /home/pi/browser_control/index.js
+Restart=always
+RestartSec=10
+SyslogIdentifier=browser-control-service
+User=pi
+Group=pi
+
+[Install]
+WantedBy=graphical.target
